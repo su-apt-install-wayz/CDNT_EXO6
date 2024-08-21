@@ -13,3 +13,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: Check Conventional Commits
       uses: commit-check/commit-check-action@v1
+      with:
+          message: true
+          branch: true
+          author-name: true
+          author-email: true
+          commit-signoff: true
+          dry-run: false
+          job-summary: true
