@@ -1,4 +1,4 @@
-name: Delete Branch after Merge
+name: Auto Delete Branch
 
 on:
   pull_request:
@@ -6,14 +6,11 @@ on:
 
 jobs:
   delete-branch:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'feature/')
     steps:
-    - name: Delete branch
-      run: |
-        BRANCH=${{ github.event.pull_request.head.ref }}
-        if [[ $BRANCH == feature/* ]]; then
-          git push origin --delete $BRANCH
-        fi
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Delete feature branch
+        run: |
+          git push origin --delete ${{ github.event.pull_request.head.ref }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
