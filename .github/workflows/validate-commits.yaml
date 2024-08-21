@@ -15,3 +15,5 @@ jobs:
 
       - name: Check Conventional Commits
         uses: conventional-changelog/commitlint-action@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
