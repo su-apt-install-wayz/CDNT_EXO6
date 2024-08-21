@@ -9,8 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'feature/')
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh
+
       - name: Delete feature branch
-        run: |
-          git push origin --delete ${{ github.event.pull_request.head.ref }}
+        run: gh api -X DELETE /repos/${{ github.repository }}/git/refs/heads/${{ github.event.pull_request.head.ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
