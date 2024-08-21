@@ -10,10 +10,6 @@ jobs:
   check-commits:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Check Conventional Commits
-        uses: conventional-changelog/commitlint-action@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@v2
+    - name: Check Conventional Commits
+      uses: commit-check/commit-check-action@v1
