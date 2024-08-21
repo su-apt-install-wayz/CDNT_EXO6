@@ -3,7 +3,7 @@ name: Conventional Commits
 on:
   push:
     branches:
-      - 'feature/*'
+      - 'features/*'
       - 'hotfix/*'
 
 jobs:
@@ -12,12 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Check Conventional Commits
-      uses: commit-check/commit-check-action@v1
-      with:
-          message: true
-          branch: true
-          author-name: true
-          author-email: true
-          commit-signoff: true
-          dry-run: false
-          job-summary: true
+      uses: webiny/action-conventional-commits@v1.3.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          allowed-commit-types: "feat,fix"
