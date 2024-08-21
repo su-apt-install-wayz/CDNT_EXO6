@@ -8,21 +8,6 @@ jobs:
   create-branch:
     runs-on: ubuntu-latest
     steps:
-<<<<<<< Updated upstream
-      
-name: Checkout code
-      uses: actions/checkout@v3
-
-      
-name: Create new branch
-      run: |
-        BRANCH_NAME="features/issue-${{ github.event.issue.number }}"
-        git fetch origin develop
-        git checkout -b $BRANCH_NAME origin/develop
-        git push origin $BRANCH_NAME
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-=======
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -34,4 +19,3 @@ name: Create new branch
           git push origin $BRANCH_NAME
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
->>>>>>> Stashed changes
